@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 
-export default function Navbar() {
+export default function Navbar({ auth }: { auth?: React.ReactNode }) {
     const { cartCount, toggleCart } = useCart();
 
     return (
@@ -19,10 +19,21 @@ export default function Navbar() {
                             className="object-cover"
                         />
                     </div>
-                    <span className="text-2xl font-extrabold text-primary tracking-tight">ClickCart</span>
+                    <span className="text-2xl font-extrabold text-primary tracking-tight hidden sm:block">ClickCart</span>
                 </Link>
-                <div className="flex items-center gap-4">
-                    <button className="text-foreground hover:text-primary transition-colors font-medium">
+                <div className="flex items-center gap-2 sm:gap-4">
+                    {/* Search Bar Placeholder */}
+                    <div className="hidden md:block flex-1 max-w-md mx-4">
+                        <input
+                            type="text"
+                            placeholder="Search Marketplace..."
+                            className="w-full px-4 py-2 rounded-full border border-border bg-card text-card-foreground focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
+                        />
+                    </div>
+
+                    {auth}
+
+                    <button className="text-foreground hover:text-primary transition-colors font-medium hidden sm:block">
                         Theme
                     </button>
                     <button

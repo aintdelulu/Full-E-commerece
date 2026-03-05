@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 
 function SuccessContent() {
     return (
@@ -27,7 +27,7 @@ function SuccessContent() {
 export default function SuccessPage() {
     return (
         <div className="min-h-screen flex flex-col">
-            <Navbar />
+            <Header />
             <main className="flex-1">
                 <Suspense fallback={<div className="text-center mt-20 font-bold text-xl text-primary">Confirming your order...</div>}>
                     <SuccessContent />

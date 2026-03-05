@@ -1,14 +1,16 @@
 "use client";
 
+export const dynamic = 'force-dynamic'
+
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 
 export default function AdminDashboard() {
     const [activeTab, setActiveTab] = useState("inventory");
 
     return (
         <div className="min-h-screen bg-secondary/30 flex flex-col">
-            <Navbar />
+            <Header />
             <main className="flex-1 py-10">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <h1 className="text-3xl md:text-5xl font-extrabold text-primary mb-10 tracking-tight">Admin Dashboard</h1>
