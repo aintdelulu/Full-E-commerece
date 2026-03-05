@@ -40,18 +40,20 @@ export default function CartDrawer() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ items: cart }),
             });
+
             const data = await res.json();
 
-            if (data.url) {
+            if (res.ok && data.url) {
                 clearCart();
                 window.location.href = data.url;
             } else {
-                alert("Failed to initiate checkout (missing Stripe URL)");
+                const errorMessage = data.error || data.message || "Unknown error";
+                alert(`Checkout Error: ${errorMessage}`);
                 setIsCheckingOut(false);
             }
         } catch (e) {
             console.error("Checkout failed", e);
-            alert("Failed to initiate checkout. Check console for details.");
+            alert("Failed to initiate checkout. Please check if your Stripe keys are configured in Vercel.");
             setIsCheckingOut(false);
         }
     };

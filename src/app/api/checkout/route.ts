@@ -10,6 +10,13 @@ export async function POST(req: Request) {
     try {
         const { items } = await req.json();
 
+        if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === "sk_test_placeholder") {
+            return NextResponse.json(
+                { error: "Stripe Secret Key is not configured in Vercel environment variables." },
+                { status: 500 }
+            );
+        }
+
         if (!items || items.length === 0) {
             return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
         }
@@ -40,7 +47,7 @@ export async function POST(req: Request) {
     } catch (error: any) {
         console.error("Error creating checkout session:", error);
         return NextResponse.json(
-            { error: "Error creating checkout session" },
+            { error: error?.message || "Error creating checkout session" },
             { status: 500 }
         );
     }
