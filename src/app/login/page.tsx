@@ -2,11 +2,13 @@ import { login, signup } from './actions'
 import Header from '@/components/Header'
 import Link from 'next/link'
 
-export default function LoginPage({
+export default async function LoginPage({
     searchParams,
 }: {
-    searchParams: { message: string, error: string }
+    searchParams: Promise<{ message: string, error: string }>
 }) {
+    const { message, error } = await searchParams;
+
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <Header />
@@ -63,15 +65,15 @@ export default function LoginPage({
                             </Link>
                         </div>
 
-                        {searchParams?.error && (
+                        {error && (
                             <div className="mt-4 p-4 bg-red-100 text-red-800 rounded-xl text-center font-medium text-sm">
-                                {searchParams.error}
+                                {error}
                             </div>
                         )}
 
-                        {searchParams?.message && (
+                        {message && (
                             <div className="mt-4 p-4 bg-green-100 text-green-800 rounded-xl text-center font-medium text-sm">
-                                {searchParams.message}
+                                {message}
                             </div>
                         )}
                     </form>
