@@ -1,6 +1,7 @@
 import { login, signup } from './actions'
 import Header from '@/components/Header'
 import Link from 'next/link'
+import AuthToast from './AuthToast'
 
 export default async function LoginPage({
     searchParams,
@@ -12,6 +13,7 @@ export default async function LoginPage({
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <Header />
+            <AuthToast message={message} error={error} />
             <div className="flex-1 flex flex-col justify-center items-center px-4">
                 <div className="w-full max-w-md bg-card border border-border rounded-3xl p-8 shadow-sm">
                     <h1 className="text-3xl font-extrabold text-primary mb-6 text-center tracking-tight">
@@ -64,18 +66,6 @@ export default async function LoginPage({
                                 Continue as Guest
                             </Link>
                         </div>
-
-                        {error && (
-                            <div className="mt-4 p-4 bg-red-100 text-red-800 rounded-xl text-center font-medium text-sm">
-                                {error}
-                            </div>
-                        )}
-
-                        {message && (
-                            <div className="mt-4 p-4 bg-green-100 text-green-800 rounded-xl text-center font-medium text-sm">
-                                {message}
-                            </div>
-                        )}
                     </form>
                 </div>
             </div>

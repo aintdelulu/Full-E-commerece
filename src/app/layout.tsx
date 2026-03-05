@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { ToastProvider } from "@/context/ToastContext";
 import CartDrawer from "@/components/CartDrawer";
 import Footer from "@/components/Footer";
 
@@ -31,9 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <CartProvider>
-          {children}
-          <CartDrawer />
-          <Footer />
+          <ToastProvider>
+            {children}
+            <CartDrawer />
+            <Footer />
+          </ToastProvider>
         </CartProvider>
       </body>
     </html>
