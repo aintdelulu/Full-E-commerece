@@ -1,5 +1,6 @@
 import { login, signup } from './actions'
 import Header from '@/components/Header'
+import Link from 'next/link'
 
 export default function LoginPage({
     searchParams,
@@ -54,6 +55,12 @@ export default function LoginPage({
                             >
                                 Create Account
                             </button>
+                            <Link
+                                href="/"
+                                className="w-full bg-transparent border-2 border-border text-foreground text-center font-bold py-3 px-4 rounded-xl hover:bg-secondary/50 transition-colors mt-2"
+                            >
+                                Continue as Guest
+                            </Link>
                         </div>
 
                         {searchParams?.error && (
